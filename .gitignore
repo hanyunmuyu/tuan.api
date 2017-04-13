@@ -1,0 +1,9 @@
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
+storage/framework/views
+storage/framework/cache
+storage/logs
+storage/app
