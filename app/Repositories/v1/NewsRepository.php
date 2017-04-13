@@ -9,7 +9,14 @@
 namespace App\Repositories\v1;
 
 
+use App\Models\NewsModel;
+
 class NewsRepository
 {
-
+    public function getNews($field = '*')
+    {
+        return NewsModel::where('status', 1)
+            ->select($field)
+            ->get()->toArray();
+    }
 }
