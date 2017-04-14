@@ -10,27 +10,27 @@ namespace App\Http\Controllers\v1;
 
 
 use App\Http\Controllers\Controller;
+use App\Repositories\v1\BannerRepository;
 use App\Repositories\v1\NewsRepository;
 use App\Repositories\v1\RecommendRepository;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    private $newsRepository;
     private $recommendRepository;
-
+    private $bannerRepository;
     public function __construct(
-        NewsRepository $newsRepository,
-        RecommendRepository $recommendRepository
+        RecommendRepository $recommendRepository,
+        BannerRepository $bannerRepository
     )
     {
-        $this->newsRepository = $newsRepository;
         $this->recommendRepository = $recommendRepository;
+        $this->bannerRepository = $bannerRepository;
     }
 
     public function index(Request $request)
     {
-        $banner = $this->newsRepository->getNews(['id', 'title', 'banner']);
+        $banner = $this->bannerRepository->getBanner(['id', 'title', 'img']);
         $recommend = $this->recommendRepository->getRecommend(['id', 'title']);
         $pageData['banner'] = $banner;
         $pageData['recommend'] = $recommend;
